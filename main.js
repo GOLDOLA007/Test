@@ -15,8 +15,9 @@ async function registerAPI(){
             password: document.getElementById('Password_R').value
         })
     })
-    .then(response => console.log('Response: ' + response))
-    .catch(error => console.log('Error: ' + error))
+    .then(response => response.text())
+        .then(text => document.getElementById('register-response').textContent = document.getElementById('register-response').textContent  + text)
+    .catch(error => document.getElementById('register-response').textContent = document.getElementById('register-response').textContent + "Error: " + error);
 }
 
 setInterval(testAPI, 60000); // Call testAPI every 1min

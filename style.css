@@ -49,7 +49,6 @@ body {
 input,
 select,
 textarea{
-
     padding: 10px;
 
     border: 1px solid #bbb;
@@ -104,7 +103,8 @@ button:hover{
     overflow:hidden;
 }
 
-.endpoint-header{
+.endpoint-post-header,
+.endpoint-get-header{
 
     display:flex;
     align-items:center;
@@ -112,13 +112,18 @@ button:hover{
     gap:20px;
 
     padding:15px;
+}
 
+.endpoint-post-header{
     background:#e8f5e9;
 }
 
-.method{
+.endpoint-get-header{
+    background:#e3f2fd;
+}
 
-    background:#49cc90;
+.method-post,
+.method-get{
 
     color:white;
 
@@ -133,13 +138,22 @@ button:hover{
     text-align:center;
 }
 
+.method-post{
+    background:#49cc90;
+}
+
+.method-get{
+    background:#55A1FF;
+}
+
 .route{
 
     font-family:monospace;
     font-size:18px;
 }
 
-.endpoint-body{
+.endpoint-body,
+form{
 
     padding:20px;
 
@@ -147,4 +161,17 @@ button:hover{
     flex-direction:column;
 
     gap:15px;
+}
+
+.Request-Response{
+
+    background:#222222;
+    color:#ffffff;
+
+    padding:15px;
+    border-radius:5px;
+
+    overflow-x:auto;
+
+    font-family:monospace;
 }

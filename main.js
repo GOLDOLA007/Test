@@ -20,6 +20,26 @@ async function registerAPI(){
     .catch(error => document.getElementById('register-response').textContent = document.getElementById('register-response').textContent + "Error: " + error);
 }
 
+async function loginAPI(){
+    if(!(document.getElementById("login-response").textContent === "Request Response: ")){
+        document.getElementById("login-response").textContent = "Request Response: ";
+    }
+
+    await fetch("http://localhost:8080/auth/login", {
+        method: "POST",
+        headers: {
+            "Content-Type" : "application/json"
+        },
+        body: JSON.stringify({
+            email: document.getElementById("Username_L").value,
+            password: document.getElementById("Password_L").value,
+        })
+    })
+    .then(response => response.text())
+            .then(text => document.getElementById('login-response').textContent = document.getElementById('login-response').textContent  + text)
+        .catch(error => document.getElementById('login-response').textContent = document.getElementById('login-response').textContent + "Error: " + error);
+}
+
 setInterval(testAPI, 60000); // Call testAPI every 1min
 let i =0;
 async function testAPI() {

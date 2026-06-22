@@ -65,13 +65,13 @@
 
                 <div class="endpoint-body">
 
-                    <form onsubmit="event.preventDefault(); loginAPI();">
+                    <form onsubmit="event.preventDefault();">
                         <input type="email" id="Username_L" required placeholder="Email">
 
                         <input type="password" id="Password_L" required placeholder="Password">
 
                         <div>
-                            <button>Execute</button>
+                            <button onclick="loginAPI_Response()">Execute</button>
 
                             <button>Login</button>
                         </div>

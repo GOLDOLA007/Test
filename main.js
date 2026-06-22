@@ -20,7 +20,7 @@ async function registerAPI(){
     .catch(error => document.getElementById('register-response').textContent = document.getElementById('register-response').textContent + "Error: " + error);
 }
 
-async function loginAPI(){
+async function loginAPI_Response(){
     if(!(document.getElementById("login-response").textContent === "Request Response: ")){
         document.getElementById("login-response").textContent = "Request Response: ";
     }

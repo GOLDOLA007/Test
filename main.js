@@ -51,9 +51,9 @@ async function testAPI() {
     try{
         const response = await fetch("http://localhost:8080/auth/status")
         
-        if(!response.ok){
-            throw new Error(`Server responded with status: ${response.status}`)
-            document.getElementById('response').textContent = response.status;
+        if(!response.ok){ 
+            document.getElementById('response').textContent = "Request Response: ERROR " + response.status;
+            throw new Error(`Server responded with status: ERROR ${response.status}`)
         }
 
         const data = await response.text();

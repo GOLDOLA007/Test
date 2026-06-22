@@ -1,10 +1,6 @@
 async function registerAPI(){
 
-    if(!(document.getElementById("register-response").textContent === "Request Response: ")){
-        document.getElementById("register-response").textContent = "Request Response: ";
-    }
-
-    await fetch("http://localhost:8080/auth/register", {
+    const response = await fetch("http://localhost:8080/auth/register", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -15,9 +11,10 @@ async function registerAPI(){
             password: document.getElementById('Password_R').value
         })
     })
-    .then(response => response.text())
-        .then(text => document.getElementById('register-response').textContent = document.getElementById('register-response').textContent  + text)
-    .catch(error => document.getElementById('register-response').textContent = document.getElementById('register-response').textContent + "Error: " + error);
+
+    const data = await response.text();
+
+    document.getElementById('register-response').textContent = "Request Response: " + data;
 }
 
 async function loginAPI_Response(){

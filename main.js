@@ -45,6 +45,40 @@ async function loginAPI_Response(){
     document.getElementById('login-response').textContent = "Request Response: " + data;
 }
 
+async function loginAPI(){
+    try{
+        if(!(document.getElementById("login-response").textContent === "Request Response: ")){
+            document.getElementById("login-response").textContent = "Request Response: ";
+        }
+
+        const response = await fetch("http://localhost:8080/auth/login", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: document.getElementById('Username_L').value,
+                password: document.getElementById('Password_L').value
+            })
+        });
+
+        if(!response.ok){
+            document.getElementById('login-response').textContent = "Request Response: ERROR " + response.status;
+            throw new Error(`Server responded with status: ERROR ${response.status}`);
+        }
+
+        const token = await response.text();
+
+        if(token != ""){
+            window.localStorage.setItem("token", token);
+            window.location.href = "https://console.neon.tech/app/projects/cool-bar-26791645?database=neondb"
+        }
+    }
+    catch(error){
+        console.error("Error during login: ", error);
+    }
+}
+
 setInterval(testAPI, 60000); // Call testAPI every 1min
 let i =0;
 async function testAPI() {

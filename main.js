@@ -12,6 +12,11 @@ async function registerAPI(){
         })
     })
 
+    if(!response.ok){
+        document.getElementById('register-response').textContent = "Request Response: ERROR " + response.status;
+        throw new Error(`Server responded with status: ERROR  + ${response.status}`);
+    }
+
     const data = await response.text();
 
     document.getElementById('register-response').textContent = "Request Response: " + data;

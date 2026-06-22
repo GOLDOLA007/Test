@@ -18,11 +18,8 @@ async function registerAPI(){
 }
 
 async function loginAPI_Response(){
-    if(!(document.getElementById("login-response").textContent === "Request Response: ")){
-        document.getElementById("login-response").textContent = "Request Response: ";
-    }
 
-    await fetch("http://localhost:8080/auth/login", {
+    const response = await fetch("http://localhost:8080/auth/login", {
         method: "POST",
         headers: {
             "Content-Type" : "application/json"
@@ -32,9 +29,15 @@ async function loginAPI_Response(){
             password: document.getElementById("Password_L").value,
         })
     })
-    .then(response => response.text())
-            .then(text => document.getElementById('login-response').textContent = document.getElementById('login-response').textContent  + text)
-        .catch(error => document.getElementById('login-response').textContent = document.getElementById('login-response').textContent + "Error: " + error);
+
+    if(!response.ok){
+        document.getElementById('login-response').textContent = "Request Response: ERROR " + response.status;
+        throw new Error(`Server responded with status: ERROR  + ${response.status}`);
+    }
+
+    const data = await response.text();
+
+    document.getElementById('login-response').textContent = "Request Response: " + data;
 }
 
 setInterval(testAPI, 60000); // Call testAPI every 1min
